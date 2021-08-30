@@ -1,3 +1,6 @@
+static int _iTarget[MAXPLAYERS+1];
+static int _iTPType[MAXPLAYERS+1];
+
 void TeleportOnPluginStart()
 {
     RegConsoleCmd("sm_teleport", TeleportOnCommandCatched, "sm_teleport");
@@ -42,8 +45,6 @@ public int MenuHandler_TeleportType(Menu menu, MenuAction action, int admin, int
 {
     if(action == MenuAction_End)
         delete menu;
-    else if(action == MenuAction_Cancel && slot == MenuCancel_ExitBack && g_hTopMenu != null)
-        g_hTopMenu.Display(admin, TopMenuPosition_LastCategory);
     else if(action == MenuAction_Select)
     {
         char info[4];
@@ -66,7 +67,7 @@ static void Util_ShowTeleporTargetMenu(int client, int type)
     }
 
     char userid[8], name[32], buffer[40];
-    for(int target = MinClients; target <= MaxClients; ++target)
+    for (int target = 1; target <= MaxClients; ++target)
         if (IsPlayerExist(target))
         {
             IntToString(GetClientUserId(target), userid, 8);
@@ -83,7 +84,7 @@ public int MenuHandler_TeleportTarget(Menu menu, MenuAction action, int client, 
 {
     if(action == MenuAction_End)
         delete menu;
-    else if(action == MenuAction_Cancel && slot == MenuCancel_ExitBack && g_hTopMenu != null)
+    else if(action == MenuAction_Cancel && slot == MenuCancel_ExitBack)
         Util_ShowTeleportMenu(client);
     else if(action == MenuAction_Select)
     {
@@ -129,7 +130,7 @@ public int MenuHandler_TeleportTarget2(Menu menu, MenuAction action, int client,
 {
     if(action == MenuAction_End)
         delete menu;
-    else if(action == MenuAction_Cancel && slot == MenuCancel_ExitBack && g_hTopMenu != null)
+    else if(action == MenuAction_Cancel && slot == MenuCancel_ExitBack)
         Util_ShowTeleportMenu(client);
     else if(action == MenuAction_Select) 
     {

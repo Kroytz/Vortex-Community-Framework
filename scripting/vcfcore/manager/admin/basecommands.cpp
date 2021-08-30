@@ -7,6 +7,7 @@
 #include "vcfcore/manager/admin/basecommands/exec.cpp"
 #include "vcfcore/manager/admin/basecommands/who.cpp"
 #include "vcfcore/manager/admin/basecommands/rounddraw.cpp"
+#include "vcfcore/manager/admin/basecommands/teleport.cpp"
 
 void BaseCommandsOnPluginStart()
 {
@@ -19,4 +20,5 @@ void BaseCommandsOnPluginStart()
     ExecOnPluginStart();
     WhoOnPluginStart();
     RoundDrawOnPluginStart();
+    TeleportOnPluginStart();
 }
