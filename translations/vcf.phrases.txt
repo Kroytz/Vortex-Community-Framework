@@ -1,0 +1,715 @@
+"Phrases"
+{
+    // ReplaceString(sText, iMaxLen, "@default",       TEXT_COLOR_DEFAILT);            //x01
+    // ReplaceString(sText, iMaxLen, "@normal",        TEXT_COLOR_NORMAL);             //x01
+    // ReplaceString(sText, iMaxLen, "@white",	       TEXT_COLOR_WHITE);              //x01
+    // ReplaceString(sText, iMaxLen, "@darkred",       TEXT_COLOR_DARKRED);            //x02
+    // ReplaceString(sText, iMaxLen, "@pink",          TEXT_COLOR_PINK);               //x03
+    // ReplaceString(sText, iMaxLen, "@green",         TEXT_COLOR_GREEN);              //x04
+    // ReplaceString(sText, iMaxLen, "@lime",          TEXT_COLOR_LIME);               //x05
+    // ReplaceString(sText, iMaxLen, "@yellow",        TEXT_COLOR_YELLOW);             //x05
+    // ReplaceString(sText, iMaxLen, "@lightgreen",    TEXT_COLOR_LIGHTGREEN);         //x06
+    // ReplaceString(sText, iMaxLen, "@lightred",      TEXT_COLOR_LIGHTRED);           //x07
+    // ReplaceString(sText, iMaxLen, "@red",           TEXT_COLOR_RED);                //x07
+    // ReplaceString(sText, iMaxLen, "@grey",          TEXT_COLOR_GREY);               //x08
+    // ReplaceString(sText, iMaxLen, "@gray",          TEXT_COLOR_GRAY);               //x08
+    // ReplaceString(sText, iMaxLen, "@olive",         TEXT_COLOR_OLIVE);              //x09
+    // ReplaceString(sText, iMaxLen, "@orange",        TEXT_COLOR_ORANGE);             //x10
+    // ReplaceString(sText, iMaxLen, "@silver",        TEXT_COLOR_SILVER);             //x0A
+    // ReplaceString(sText, iMaxLen, "@lightblue",     TEXT_COLOR_LIGHTBLUE);          //x0B
+    // ReplaceString(sText, iMaxLen, "@blue",          TEXT_COLOR_BLUE);               //x0C
+    // ReplaceString(sText, iMaxLen, "@purple",        TEXT_COLOR_PURPLE);             //x0E
+    // ReplaceString(sText, iMaxLen, "@darkorange",    TEXT_COLOR_DARKORANGE);         //x0F
+
+    // ==========================
+    // ==        General       ==
+    // ==========================
+
+    "Prefix" // Chat
+    {
+        "en"        "@white[@purpleVCF@white]@default "
+        "chi"       "@white[@purpleVCF@white]@default "
+    }
+
+    "connect announce" // Chat
+    {
+        "#format"   "{1:N},{2:s}"
+        "en"        "@blue▲@default {1} @white({2})@default connected."
+        "chi"       "@blue▲@default {1} @white({2})@default 进入了服务器."
+    }
+
+    "nightvision on" // Chat
+    {
+        "en"        "@greenNightvision@default is now @blueEnabled@default !"
+        "chi"       "@green夜视仪@default已 @blue开启@default !"
+    }
+
+    "nightvision off" // Chat
+    {
+        "en"        "@greenNightvision@default is now @redDisabled@default !"
+        "chi"       "@green夜视仪@default已 @red关闭@default !"
+    }
+
+    "try again later cooldown"
+    {
+        "en"        "Operations from client is too frequent! Please try again later!"
+        "chi"       "你的操作过于频繁! 请稍后再试!"
+    }
+
+    "try again later error"
+    {
+        "en"        "An error occured! Please try again later!"
+        "chi"       "执行过程中出错! 请稍后再试!"
+    }
+
+    "head" // Coin Flip
+    {
+        "en"        "Head"
+        "chi"       "正面"
+    }
+
+    "tail" // Coin Flip
+    {
+        "en"        "Tail"
+        "chi"       "反面"
+    }
+
+    "client connected welcome message"
+    {
+        "#format"   "{1:s}"
+        "en"        "Welcome to Vector Community, @green{1}@default !"
+        "chi"       "欢迎来到 VE 社区, @green{1}@default !"
+    }
+
+    "client connected current time"
+    {
+        "#format"   "{1:s}"
+        "en"        "Current server time: @lightblue{1}@default."
+        "chi"       "当前服务器时间: @lightblue{1}@default."
+    }
+
+    "client connected general help tips"
+    {
+        "en"        "Type @green/?@default for more commands."
+        "chi"       "输入 @green/?@default 以获得更多指令."
+    }
+
+    "basehelp check console"
+    {
+        "en"        "Check console for commands."
+        "chi"       "输出完成, 请查看控制台."
+    }
+
+    "store core not available"
+    {
+        "en"        "This function is unavailable because the Store plugin has not been enabled."
+        "chi"       "由于 商店 插件关闭, 该功能暂时不可用..."
+    }
+
+    // ==========================
+    // ==     User  Center     ==
+    // ==========================
+
+    "vusers main menu title"
+    {
+        "en"        "[User center]"
+        "chi"       "[用户中心]"
+    }
+
+    "vusers item info"
+    {
+        "en"        "My Info"
+        "chi"       "个人信息"
+    }
+
+    "vusers item sign"
+    {
+        "en"        "Sign in"
+        "chi"       "每日签到"
+    }
+
+    "vusers item stats"
+    {
+        "en"        "Stats"
+        "chi"       "数据统计"
+    }
+
+    "vusers item bag"
+    {
+        "en"        "Inventory"
+        "chi"       "道具仓库"
+    }
+
+    "vusers info menu title"
+    {
+        "en"        "[My Info]"
+        "chi"       "[个人信息]"
+    }
+
+    "vusers info level"
+    {
+        "en"        "VIP Level"
+        "chi"       "VIP 级别"
+    }
+
+    "vusers info totalpurchase"
+    {
+        "en"        "Total Purchase"
+        "chi"       "累计氪金"
+    }
+
+    "vusers purchase unit"
+    {
+        "en"        "CNY"
+        "chi"       "元"
+    }
+
+    // ==========================
+    // ==     Admin System     ==
+    // ==========================
+
+    "admin menu"
+    {
+        "en"        "[Admin menu]"
+        "chi"       "[管理员菜单]"
+    }
+
+    "no access"
+    {
+        "en"        "No access."
+        "chi"       "权限不足."
+    }
+
+    "slap menu"
+    {
+        "en"        "[Slap]"
+        "chi"       "[拍打]"
+    }
+
+    "invalid identifier"
+    {
+        "en"        "Invalid identifier, use Steam64 for offline ban."
+        "chi"       "无效特征码, 对于离线封禁请使用 Steam64 特征."
+    }
+
+    "adminmenu slap"
+    {
+        "en"        "Slap menu"
+        "chi"       "拍打菜单"
+    }
+
+    "slay menu"
+    {
+        "en"        "[Slay]"
+        "chi"       "[处死]"
+    }
+
+    "adminmenu teleport"
+    {
+        "en"        "Teleport menu"
+        "chi"       "传送菜单"
+    }
+
+    "teleport menu"
+    {
+        "en"        "[Teleport]"
+        "chi"       "[传送]"
+    }
+
+    "teleport menu to"
+    {
+        "en"        "Teleport you to..."
+        "chi"       "传送 你 到 某玩家"
+    }
+
+    "teleport menu back"
+    {
+        "en"        "Teleport ... to you"
+        "chi"       "传送 某玩家 到 你"
+    }
+
+    "teleport menu ab"
+    {
+        "en"        "Teleport A to B"
+        "chi"       "传送玩家 A 到玩家 B"
+    }
+
+    "adminmenu slay"
+    {
+        "en"        "Slay menu"
+        "chi"       "处死菜单"
+    }
+
+    "kick menu"
+    {
+        "en"        "[Kick]"
+        "chi"       "[踢出]"
+    }
+
+    "adminmenu slay"
+    {
+        "en"        "Kick menu"
+        "chi"       "踢人菜单"
+    }
+
+    "invalid target"
+    {
+        "en"        "Invalid target."
+        "chi"       "非法目标."
+    }
+
+    "map not found"
+    {
+        "#format"   "{1:s}"
+        "en"        "Can't find map: {1} ."
+        "chi"       "找不到地图: {1} ."
+    }
+
+    "admin slap"
+    {
+        "#format"   "{1:s},{2:N},{3:d}"
+        "en"        "{1} slapped {2} for {3} damage."
+        "chi"       "管理员 {1} 拍打了 {2}, 造成了 {3} 伤害."
+    }
+
+    "admin slay"
+    {
+        "#format"   "{1:s},{2:N}"
+        "en"        "Admin {1} slayed {2} ."
+        "chi"       "管理员 {1} 处死了 {2} ."
+    }
+
+    "admin map"
+    {
+        "#format"   "{1:s},{2:s}"
+        "en"        "Admin {1} changed map to {2} ..."
+        "chi"       "管理员 {1} 更换了地图为 {2} ..."
+    }
+
+    "admin rcon"
+    {
+        "#format"   "{1:s},{2:s}"
+        "en"        "Admin {1} executed {2} to server."
+        "chi"       "管理员 {1} 对服务器执行了 {2} 指令."
+    }
+
+    "admin rcon result"
+    {
+        "#format"   "{1:s}"
+        "en"        "Rcon result: {1} ."
+        "chi"       "执行结果: {1} ."
+    }
+
+    "admin cvar value"
+    {
+        "#format"   "{1:s},{2:s}"
+        "en"        "Cvar {1}: {2} ."
+        "chi"       "参数 {1}: {2} ."
+    }
+
+    "admin cvar"
+    {
+        "#format"   "{1:s},{2:s},{3:s}"
+        "en"        "Admin {1} changed cvar {2} to {3} ."
+        "chi"       "管理员 {1} 调整参数 {2} 为 {3} ."
+    }
+
+    "admin cvar reset"
+    {
+        "#format"   "{1:s},{2:s}"
+        "en"        "Admin {1} reset cvar {2} ."
+        "chi"       "管理员 {1} 重设参数 {2} ."
+    }
+
+    "admin kick"
+    {
+        "#format"   "{1:s},{2:N},{3:s}"
+        "en"        "Admin {1} kicked {2} (Reason: {3})."
+        "chi"       "管理员 {1} 踢出了 {2} (理由: {3})."
+    }
+
+    "admin ban"
+    {
+        "#format"   "{1:N},{2:N},{3:d},{4:s}"
+        "en"        "Admin {1} banned {2} for {3} {4}."
+        "chi"       "管理员 {1} 封禁了 {2} ({3} {4})."
+    }
+
+    "admin teleport"
+    {
+        "#format"   "{1:N},{2:N},{3:N}"
+        "en"        "Admin {1} teleported @green{2}@white to @green{3}@white."
+        "chi"       "管理员 {1} 将 @green{2}@white 传送到了 @green{3}@white."
+    }
+
+    "admin rounddraw"
+    {
+        "#format"   "{1:N}"
+        "en"        "Admin {1} make this round draw."
+        "chi"       "管理员 {1} 令本回合平局."
+    }
+
+    // ==========================
+    // ==      Daily Sign      ==
+    // ==========================
+
+    "sign reward"
+    {
+        "#format"   "{1:d},{2:d}"
+        "en"        "You have signed in the game, got {1} credit(s). [{2} days continual]"
+        "chi"       "签到成功! 获得奖励 {1} 点数. [连签 {2} 天]"
+    }
+
+    "sign already signed" // chat
+    {
+        "en"        "You have already signed today."
+        "chi"       "你今天已经签到过了."
+    }
+
+    // ==========================
+    // ==    Invite  System    ==
+    // ==========================
+
+    "invite try generate code" // chat
+    {
+        "en"        "Generating invitation code..."
+        "chi"       "正在生成邀请码..."
+    }
+
+    "invite try active code" // chat
+    {
+        "#format"   "{1:s}"
+        "en"        "Activating invitation code '%s' ..."
+        "chi"       "正在激活邀请码 '{1}' ..."
+    }
+
+    "invite activate success" // chat
+    {
+        "en"        "Invitation code activated."
+        "chi"       "邀请码已激活."
+    }
+
+    "invite type code try active" // chat
+    {
+        "en"        "Type in the invitation code what you have received directly on chat."
+        "chi"       "请在聊天框内输入您收到的邀请码."
+    }
+
+    "invite cant use self code" // chat
+    {
+        "en"        "You cannot use the invitation code what you have generated."
+        "chi"       "你不能使用你自己生成的邀请码."
+    }
+
+    "invite cant find code" // chat
+    {
+        "en"        "Failed to find this code in data center."
+        "chi"       "无法在数据中心中找到该邀请码."
+    }
+
+    "invite code already exist" // chat
+    {
+        "en"        "Failed to generate code. Please try again after 10.0 seconds."
+        "chi"       "生成邀请码失败. 请在 10.0 秒后重试."
+    }
+
+    "invite generate success" // chat
+    {
+        "en"        "The invitation code has been generated."
+        "chi"       "邀请码已生成."
+    }
+
+    "invite menu title" // menu
+    {
+        "en"        "[Invitation]"
+        "chi"       "[邀请友伴]"
+    }
+
+    "invite item generate" // menu
+    {
+        "#format"   "{1:s}"
+        "en"        "Generate invitation code\nCode: {1}"
+        "chi"       "邀请码生成\n邀请码: {1}"
+    }
+
+    "invite item reward" // menu
+    {
+        "#format"   "{1:d}"
+        "en"        "Earn invitation reward\nRemaining {1} reward(s)"
+        "chi"       "领取邀请奖励\n剩余 {1} 份奖励未领取"
+    }
+
+    "invite item enter" // menu
+    {
+        "en"        "Enter invitation code"
+        "chi"       "填写邀请码"
+    }
+
+    "invite no reward remain" // chat
+    {
+        "en"        "You do not have any reward to get."
+        "chi"       "你当前没有可以领取的奖励."
+    }
+
+    "invite reward" // chat
+    {
+        "#format"   "{1:d}"
+        "en"        "You have received {1} credits as invitation reward."
+        "chi"       "你领取了 {1} 点数 作为邀请奖励."
+    }
+
+    "invite free ammopack" // chat
+    {
+        "en"        "You have received random 'Ammopack Box'."
+        "chi"       "你获得了随机 '弹药袋盒'."
+    }
+
+    "invite free exp" // chat
+    {
+        "en"        "You have received random 'EXP Book'."
+        "chi"       "你获得了随机 '幸存者笔记'."
+    }
+
+    "invite free wing" // chat
+    {
+        "en"        "You have received random 'Wings (30 days)'."
+        "chi"       "你获得了随机 '翅膀 (30天)'."
+    }
+
+    "invite free skin" // chat
+    {
+        "en"        "You have received random 'Player skin'."
+        "chi"       "你获得了随机 '人物皮肤'."
+    }
+
+    // ==========================
+    // ==      Bag System      ==
+    // ==========================
+
+    "bag menu title" // menu
+    {
+        "en"        "[Backpack]"
+        "chi"       "[背包]"
+    }
+
+    "bag item empty" // menu
+    {
+        "en"        "(Empty)"
+        "chi"       "(空)"
+    }
+
+    "bag item owning" // menu
+    {
+        "#format"   "{1:d}"
+        "en"        "Owned: {1}"
+        "chi"       "持有数量: {1}"
+    }
+
+    "bag action use" // menu
+    {
+        "en"        "Use"
+        "chi"       "使用"
+    }
+
+    "item test name"
+    {
+        "en"        "Who the fuck care?"
+        "chi"       "谁在意呢?"
+    }
+
+    "zm ap150 name"
+    {
+        "en"        "Ammopack Box (x150)"
+        "chi"       "弹药袋箱"
+    }
+
+    "zm ap120 name"
+    {
+        "en"        "Ammopack Box (x120)"
+        "chi"       "大弹药袋盒"
+    }
+
+    "zm ap90 name"
+    {
+        "en"        "Ammopack Box (x90)"
+        "chi"       "中弹药袋盒"
+    }
+
+    "zm ap45 name"
+    {
+        "en"        "Ammopack Box (x45)"
+        "chi"       "小弹药袋盒"
+    }
+
+    "zm exp10k name"
+    {
+        "en"        "EXP Book (10k)"
+        "chi"       "幸存者手帐.全本"
+    }
+
+    "zm exp6k5 name"
+    {
+        "en"        "EXP Book (6.5k)"
+        "chi"       "幸存者手帐"
+    }
+
+    "zm exp4k5 name"
+    {
+        "en"        "EXP Book (4.5k)"
+        "chi"       "幸存者手帐.简本"
+    }
+
+    "zm exp1k5 name"
+    {
+        "en"        "EXP Book (1.5k)"
+        "chi"       "幸存者手帐.残缺本"
+    }
+
+    "item test desc"
+    {
+        "en"        "Why you can check this item :)"
+        "chi"       "为什么这玩意儿会出现在你仓库里 :)"
+    }
+
+    "zm ap150 desc"
+    {
+        "en"        "A box contains 150 ammopacks supply"
+        "chi"       "提供 150 个弹药袋的补给"
+    }
+
+    "zm ap120 desc"
+    {
+        "en"        "A box contains 120 ammopacks supply"
+        "chi"       "提供 120 个弹药袋的补给"
+    }
+
+    "zm ap90 desc"
+    {
+        "en"        "A box contains 90 ammopacks supply"
+        "chi"       "提供 90 个弹药袋的补给"
+    }
+
+    "zm ap45 desc"
+    {
+        "en"        "A box contains 45 ammopacks supply"
+        "chi"       "提供 45 个弹药袋的补给"
+    }
+
+    "zm exp10k desc"
+    {
+        "en"        "A notebook provide 10000 experiences"
+        "chi"       "提供 10000 点经验值"
+    }
+
+    "zm exp6k5 desc"
+    {
+        "en"        "A notebook provide 6500 experiences"
+        "chi"       "提供 6500 点经验值"
+    }
+
+    "zm exp4k5 desc"
+    {
+        "en"        "A notebook provide 4500 experiences"
+        "chi"       "提供 4500 点经验值"
+    }
+
+    "zm exp1k5 desc"
+    {
+        "en"        "A notebook provide 1500 experiences"
+        "chi"       "提供 1500 点经验值"
+    }
+
+    // ==========================
+    // ==    Stats  Tracker    ==
+    // ==========================
+
+    "stats menu title"
+    {
+        "en"        "[Stats]\nTIP: Update at each map start"
+        "chi"       "[数据统计]\n提示: 数据仅供参考, 换图更新"
+    }
+
+    "zp stats slot1"
+    {
+        "en"        "Kill"
+        "chi"       "击杀"
+    }
+
+    "zp stats slot2"
+    {
+        "en"        "Death/Infected"
+        "chi"       "死亡/被感染"
+    }
+
+    "zp stats slot3"
+    {
+        "en"        "Infect"
+        "chi"       "感染"
+    }
+
+    "zp stats slot4"
+    {
+        "en"        "Kill [SI-1]"
+        "chi"       "击杀 [特感-1]"
+    }
+
+    "zp stats slot5"
+    {
+        "en"        "Kill [SI-2]"
+        "chi"       "击杀 [特感-2]"
+    }
+
+    "zp stats slot6"
+    {
+        "en"        "Escape"
+        "chi"       "逃脱"
+    }
+
+    // ==========================
+    // ==     Fun commands     ==
+    // ==========================
+
+    "flip out message"
+    {
+        "#format"   "{1:s},{2:t}"
+        "en"        "@green{1}@default filped a coin:@lightblue {2}@default."
+        "chi"       "@green{1}@default 抛掷了一枚硬币:@lightblue {2}@default."
+    }
+
+    "roll out message"
+    {
+        "#format"   "{1:s},{2:d},{3:d},{4:d}"
+        "en"        "@green{1}@default rolls ({2} - {3}):@lightblue {4}@default."
+        "chi"       "@green{1}@default 掷骰子 ({2} - {3}):@lightblue {4}@default."
+    }
+
+    // ==========================
+    // ==   Hide   Teammates   ==
+    // ==========================
+
+    "hide disabled"
+    {
+        "en"        "Hide teammates has been disabled."
+        "chi"       "队友隐藏已关闭."
+    }
+
+    "hide setting retriving"
+    {
+        "en"        "Your data has not been retrived yet."
+        "chi"       "数据加载中, 请稍后..."
+    }
+
+    "hide enabled information"
+    {
+        "#format"   "{1:.1f}"
+        "en"        "You have hide teammates with {1} units distance."
+        "chi"       "现在 {1} 范围内的队友将会被隐藏."
+    }
+
+    "hide input invalid"
+    {
+        "#format"   "{1:d},{2:d}"
+        "en"        "You must input a value between {1} and {2} !"
+        "chi"       "你必须输入在 {1} 至 {2} 之间的值!"
+    }
+}
