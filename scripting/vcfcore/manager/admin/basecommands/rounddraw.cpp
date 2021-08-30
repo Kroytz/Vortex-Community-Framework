@@ -20,5 +20,5 @@ void BaseCommandsDoRoundDraw(int admin)
     CS_TerminateRound(12.0, CSRoundEnd_Draw, false);
 
     DatabaseInsertAdminLog(admin, "RoundDraw");
-    LPrintToChatAllSingleLine("admin rounddraw", szAdminName);
+    LPrintToChatAllSingleLine("admin rounddraw", admin);
 }

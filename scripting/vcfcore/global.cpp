@@ -56,7 +56,8 @@ CvarsList gCvarList;
 enum /* SayHookType */
 {
     SAYHOOK_NONE,
-    SAYHOOK_INVITE = 1
+    SAYHOOK_INVITE = 1,
+    SAYHOOK_ADMINBAN
 }
 
 /**

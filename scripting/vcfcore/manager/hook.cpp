@@ -71,6 +71,10 @@ public Action OnClientSayCommand(int client, const char[] command, const char[] 
             {
                 InviteTryActiveCode(client, sArgs);
             }
+            case SAYHOOK_ADMINBAN:
+            {
+                BansOnSayHookEnd(client, sArgs);
+            }
         }
 
         gClientData[client].SayHookType = SAYHOOK_NONE;

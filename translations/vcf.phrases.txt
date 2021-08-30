@@ -252,6 +252,18 @@
         "chi"       "踢人菜单"
     }
 
+    "adminmenu ban"
+    {
+        "en"        "Ban menu"
+        "chi"       "封禁菜单"
+    }
+
+    "ban menu"
+    {
+        "en"        "[Ban]"
+        "chi"       "[封禁]"
+    }
+
     "invalid target"
     {
         "en"        "Invalid target."

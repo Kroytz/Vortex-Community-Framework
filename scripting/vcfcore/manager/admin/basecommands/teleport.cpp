@@ -18,15 +18,23 @@ public Action TeleportOnCommandCatched(int client, int args)
 
 static void Util_ShowTeleportMenu(int client)
 {
+    char szOption[128];
     Menu menu = new Menu(MenuHandler_TeleportType);
     
-    menu.SetTitle("[Teleport]\n ");
+    SetGlobalTransTarget(client);
+
+    menu.SetTitle("%t\n ", "teleport menu");
     
-    menu.AddItem("1", "传送你到某个玩家");
-    menu.AddItem("2", "传送某玩家到你处");
-    menu.AddItem("3", "传送玩家A到玩家B");
+    Format(szOption, sizeof(szOption), "%t", "teleport menu to");
+    menu.AddItem("1", szOption);
+
+    Format(szOption, sizeof(szOption), "%t", "teleport menu back");
+    menu.AddItem("2", szOption);
+
+    Format(szOption, sizeof(szOption), "%t", "teleport menu ab");
+    menu.AddItem("3", szOption);
+
     menu.ExitBackButton = true;
-    
     menu.Display(client, 30);
 }
 
@@ -59,7 +67,7 @@ static void Util_ShowTeleporTargetMenu(int client, int type)
 
     char userid[8], name[32], buffer[40];
     for(int target = MinClients; target <= MaxClients; ++target)
-        if(IsClientInGame(target) && IsPlayerAlive(target))
+        if (IsPlayerExist(target))
         {
             IntToString(GetClientUserId(target), userid, 8);
             GetClientName(target, name, 32);
@@ -104,7 +112,7 @@ void DisplayAgainMenu(int client)
     char uid[8], name[64];
     for(int i = 1; i <= MaxClients; i++)
     {
-        if(i == source || !IsClientInGame(i) || !IsPlayerAlive(i))
+        if(i == source || !IsPlayerExist(i))
             continue;
 
         int userid = GetClientUserId(i);
@@ -133,15 +141,9 @@ public int MenuHandler_TeleportTarget2(Menu menu, MenuAction action, int client,
 
 void Util_TeleportDest(int admin, int source, int target)
 {
-    if(!ClientIsAlive(source))
+    if(!IsPlayerExist(source) || !IsPlayerExist(target))
     {
-        Chat(admin, "要传送的玩家已经死了或者离开了游戏");
-        return;
-    }
-
-    if(!ClientIsAlive(target))
-    {
-        Chat(admin, "要传送的玩家已经死了或者离开了游戏");
+        LPrintToChatSingleLine(admin, "invalid target");
         return;
     }
 
@@ -150,6 +152,9 @@ void Util_TeleportDest(int admin, int source, int target)
     GetClientEyeAngles(target, fAgl);
     TeleportEntity(source, fPos, fAgl, NULL_VECTOR);
 
-    ChatAll("{purple}%N{white}把{green}%N{white}传送到了{green}%N{white}所在位置.", admin, source, target);
-    LogAction(admin, -1, "\"%L\" 传送 \"%L\" 到 \"%L\"", admin, source, target);
+    char szTemp[256];
+    FormatEx(szTemp, sizeof(szTemp), "Source: %N -> %N : Target");
+
+    LPrintToChatAllSingleLine("admin teleport", admin, source, target);
+    DatabaseInsertAdminLog(admin, "Teleport", source, szTemp);
 }
