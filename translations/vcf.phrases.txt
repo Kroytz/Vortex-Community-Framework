@@ -246,7 +246,7 @@
         "chi"       "[踢出]"
     }
 
-    "adminmenu slay"
+    "adminmenu kick"
     {
         "en"        "Kick menu"
         "chi"       "踢人菜单"
