@@ -17,6 +17,7 @@ enum struct ServerData
 
     /* Core Plugins */
     bool            core_Store;
+    bool            core_93xGeoIP;
 
     /* Mods Plugins */
     bool            mod_ZombiePlague;
@@ -43,6 +44,26 @@ enum struct CvarsList
     ConVar JUMPBOOST_MULTIPLY;
     ConVar JUMPBOOST_HEIGHT_MULTIPLY;
     ConVar JUMPBOOST_MAX;
+
+    void SyncTickrate()
+    {
+        ConVar DEFAULT_MINUPDATERATE;
+        ConVar DEFAULT_MAXUPDATERATE;
+        ConVar DEFAULT_MINCMDRATE;
+        ConVar DEFAULT_MAXCMDRATE;
+
+        DEFAULT_MINUPDATERATE = FindConVar("sv_minupdaterate");
+        DEFAULT_MAXUPDATERATE = FindConVar("sv_maxupdaterate");
+        DEFAULT_MINCMDRATE    = FindConVar("sv_mincmdrate");
+        DEFAULT_MAXCMDRATE    = FindConVar("sv_maxcmdrate");
+
+        int tickrate = GetCommandLineParamInt("-tickrate", 64);
+
+        DEFAULT_MINUPDATERATE.IntValue = tickrate;
+        DEFAULT_MAXUPDATERATE.IntValue = tickrate;
+        DEFAULT_MINCMDRATE.IntValue    = tickrate;
+        DEFAULT_MAXCMDRATE.IntValue    = tickrate;
+    }
 }
 /**
  * @endsection

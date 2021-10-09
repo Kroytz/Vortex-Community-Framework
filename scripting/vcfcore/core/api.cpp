@@ -67,10 +67,13 @@ APLRes APIOnInit()
     MarkNativeAsOptional("Store_GiveItem");
     MarkNativeAsOptional("Store_GetItemidByUniqueid");
 
+    MarkNativeAsOptional("checkip_93x");
+
     // Fire to sub modules
     APIOnNativeInit();
     VToolsOnNativeInit();
     UsersOnNativeInit();
+    AdminOnNativeInit();
 
     // Register library
     RegPluginLibrary("vcf_core");

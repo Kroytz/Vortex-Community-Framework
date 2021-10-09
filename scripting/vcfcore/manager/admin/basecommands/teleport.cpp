@@ -72,7 +72,7 @@ static void Util_ShowTeleporTargetMenu(int client, int type)
         {
             IntToString(GetClientUserId(target), userid, 8);
             GetClientName(target, name, 32);
-            FormatEx(buffer, 40, "%32s (%8s)", name, userid);
+            FormatEx(buffer, 40, "%s (%s)", name, userid);
             menu.AddItem(userid, buffer);
         }
 
@@ -154,7 +154,7 @@ void Util_TeleportDest(int admin, int source, int target)
     TeleportEntity(source, fPos, fAgl, NULL_VECTOR);
 
     char szTemp[256];
-    FormatEx(szTemp, sizeof(szTemp), "Source: %N -> %N : Target");
+    FormatEx(szTemp, sizeof(szTemp), "Source: %N -> %N : Target", source, target);
 
     LPrintToChatAllSingleLine("admin teleport", admin, source, target);
     DatabaseInsertAdminLog(admin, "Teleport", source, szTemp);

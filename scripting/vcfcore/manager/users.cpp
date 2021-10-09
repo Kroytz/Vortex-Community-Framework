@@ -30,14 +30,23 @@ void UsersOnClientPostAdminCheck(int client)
 
 void UsersOnClientConnectedMessage(int client)
 {
-    if (IsFakeClient(client)) return;
+    if (IsFakeClient(client))
+        return;
     
-    static char szTemp[64];
+    char szTemp[64]; char szCity[128];
     GetClientIP(client, szTemp, sizeof(szTemp));
-    if (!GeoipCountry(szTemp, szTemp, sizeof(szTemp)))
-        FormatEx(szTemp, sizeof(szTemp), "Earth");
+    if (!gServerData.core_93xGeoIP)
+    {
+        if (!GeoipCountry(szTemp, szCity, sizeof(szCity)))
+            FormatEx(szCity, sizeof(szCity), "Earth");
+    }
+    else
+    {
+        char szNetwork[64];
+        checkip_93x(szTemp, szCity, 128, szNetwork, 64, 1);
+    }
 
-    LPrintToChatAllSingleLine("connect announce", client, szTemp);
+    LPrintToChatAllSingleLine("connect announce", client, szCity);
 }
 
 void UsersOnClientDisconnect(int client)
@@ -58,18 +67,16 @@ void UsersFetchUser(int client)
 
 DBCallbackGeneral(UsersFetchUserCB)
 {
-    if(dbRs == null)
+    if (!IsPlayerExist(client, false))
+        return;
+
+    if (dbRs == null)
     {
         LogError("[UsersFetchUserCB] -> Error: (%s)", szError);
         if(StrContains(szError, "Lost connection to MySQL", false) != -1)
         {
             DatabaseTryReconnect();
         }
-        return;
-    }
-
-    if (!IsPlayerExist(client, false))
-    {
         return;
     }
     

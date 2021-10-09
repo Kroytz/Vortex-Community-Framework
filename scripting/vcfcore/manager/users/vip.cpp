@@ -1,6 +1,6 @@
 void VIPOnClientReady(int client)
 {
-    if (!IsPlayerExist(client) || IsFakeClient(client))
+    if (!IsPlayerExist(client, false) || IsFakeClient(client))
         return;
 
     VIPFetchUser(client);
@@ -8,7 +8,7 @@ void VIPOnClientReady(int client)
 
 void VIPFetchUser(int client)
 {
-    if (!IsPlayerExist(client) || IsFakeClient(client))
+    if (!IsPlayerExist(client, false) || IsFakeClient(client))
         return;
 
     // format query

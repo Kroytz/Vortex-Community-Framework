@@ -131,3 +131,33 @@ void DatabaseInsertAdminLog(int admin, const char[] sOperate, int target = -1, c
     FormatEx(szQuery, sizeof(szQuery), "INSERT INTO vcf_logs (admin,adminnick,serverid,operate,target,targetname,operationtime,note) VALUES ('%s','%s','%d','%s','%s','%s','%d','%s')", szAdmin64, szAdminNick, gServerData.ServerID, sOperate, szTarget64, szTargetName, GetTime(), sNote);
     gServerData.DBI.Query(DatabaseQueryAndIgnore, szQuery);
 }
+
+char[] DatabaseGetPlayerName(int iClient)
+{
+    static char sName[65];
+    GetClientName(iClient, sName, 32);
+
+    gServerData.DBI.Escape(sName, sName, sizeof(sName));
+
+    return sName;
+}
+
+void GetFixNamePlayer(char[] sName)
+{
+    for(int i = 0, iLen = strlen(sName), iCharBytes; i < iLen;)
+    {
+        if((iCharBytes = GetCharBytes(sName[i])) == 4)
+        {
+            iLen -= iCharBytes;
+
+            for(int j = i; j <= iLen; j++)
+            {
+                sName[j] = sName[j + iCharBytes];
+            }
+        }
+        else
+        {
+            i += iCharBytes;
+        }
+    }
+}

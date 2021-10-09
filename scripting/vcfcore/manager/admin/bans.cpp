@@ -1,4 +1,4 @@
-#define BANS_WEBSITE "VE-Club.NeT"
+#define BANS_WEBSITE "RolandHvH.com"
 
 enum struct ban_info_t
 {
@@ -32,6 +32,7 @@ void BansOnPluginStart()
 void BansOnSayHookEnd(int client, const char[] szString)
 {
     strcopy(g_AdminSelect[client].m_Reason, sizeof(g_AdminSelect[].m_Reason), szString);
+    BansGuideMenuFinale(client);
 }
 
 public Action BansOnCommandCatched(int client, int args)
@@ -165,6 +166,7 @@ void BansDisplayGuideMenuStepThree(int admin)
     menu.AddItem("骚扰他人", "骚扰他人");
     menu.AddItem("队友伤害", "队友伤害");
     menu.AddItem("破坏规则", "破坏规则");
+    menu.AddItem("自定义理由", "自定义理由"); // Slot 6
 
     PrintToChat(admin, "=========== Bans ===========");
     PrintToChat(admin, "若要使用自定义利用请使用指令");
@@ -181,11 +183,19 @@ public int BansGuideMenuStepThreeHandler(Menu menu, MenuAction action, int admin
         delete menu;
     else if (action == MenuAction_Select)
     {
-        char reason[32];
-        menu.GetItem(slot, reason, 32);
-        strcopy(g_AdminSelect[admin].m_Reason, 256, reason);
+        if (slot < 6)
+        {
+            char reason[32];
+            menu.GetItem(slot, reason, 32);
+            strcopy(g_AdminSelect[admin].m_Reason, 256, reason);
 
-        BansGuideMenuFinale(admin);
+            BansGuideMenuFinale(admin);
+        }
+        else
+        {
+            PrintToChat(admin, "请在聊天框内输入你的理由并按下回车");
+            gClientData[admin].SayHookType = SAYHOOK_ADMINBAN;
+        }
     }
 }
 
@@ -234,9 +244,9 @@ void BansDoBan(int admin, int target, const char[] szIdentifier, int banType, in
 
     time *= 60;
 
-    if (target >= 0) // 游戏内封禁?
+    if (target > 0) // 游戏内封禁?
     {
-        FormatEx(szName, sizeof(szName), "%N", target);
+        FormatEx(szName, sizeof(szName), "%s", DatabaseGetPlayerName(target));
 
         int displaytime = time / 60; Format(szTemp, sizeof(szTemp), "Min");
         if (displaytime >= 1440)
@@ -263,7 +273,7 @@ void BansDoBan(int admin, int target, const char[] szIdentifier, int banType, in
         BANS_WEBSITE
         );
 
-        LPrintToChatAllSingleLine("admin ban", admin, target, displaytime, szTemp);
+        LPrintToChatAllSingleLine("admin ban", admin, target, szBanType[banType], displaytime, szTemp);
     }
     else // 游戏外封禁?
     {

@@ -83,8 +83,10 @@ void BaseCommandsDoCvar(int admin, const char[] szCvar, char[] szNewValue)
     else
         FormatEx(szAdminName, sizeof(szAdminName), "%N", admin);
 
-    DatabaseInsertAdminLog(admin, "Cvar", _, szValue);
     LPrintToChatAllSingleLine("admin cvar", szAdminName, szCvar, szValue);
+
+    FormatEx(szValue, sizeof(szValue), "%s -> %s", szCvar, szNewValue);
+    DatabaseInsertAdminLog(admin, "Cvar", _, szValue);
 }
 
 public Action ResetCvarOnCommandCatched(int client, int args)

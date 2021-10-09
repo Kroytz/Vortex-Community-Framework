@@ -28,6 +28,11 @@ void AdminOnPluginStart()
     BaseCommandsOnPluginStart();
 }
 
+void AdminOnNativeInit()
+{
+    CreateNative("VCF_AdminHasFlag", API_AdminHasFlag);
+}
+
 public Action AdminReloadAdminsOnCommandCatched(int client, int args)
 {
     if (!AdminIsClientAdmin(client))
@@ -198,7 +203,10 @@ int AdminConvertStringToBits(const char[] szFlagString)
 
 inline bool AdminHasClientFlag(int client, int iFlag)
 {
-    if (client == 0 || (gClientData[client].Flags & iFlag) || (gClientData[client].Flags & ADMINFLAG_ROOT))
+    if (
+        client == 0 || 
+        ((gClientData[client].Flags > 0) && ((gClientData[client].Flags & iFlag) || (gClientData[client].Flags & ADMINFLAG_ROOT)))
+    )
     {
         return true;
     }
@@ -206,6 +214,16 @@ inline bool AdminHasClientFlag(int client, int iFlag)
     {
         return false;
     }
+}
+
+public int API_AdminHasFlag(Handle hPlugin, int iNumParams)
+{
+    // Gets real player index from native cell 
+    int client = GetNativeCell(1);
+    int flag = GetNativeCell(2);
+    
+    // Return the value
+    return AdminHasClientFlag(client, flag);
 }
 
 stock int ConvertSteam64ToSteam32(const char[] steamId64, char[] steamId32, int maxLen)
