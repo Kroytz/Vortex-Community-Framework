@@ -25,6 +25,9 @@ native void Store_SetClientCredits(int client, int credits);
 native void Store_GiveItem(int client, int itemid, int purchase=0, int expiration=0, int price=0);
 native int Store_GetItemidByUniqueid(const char[] itemname);
 
+// 93x natives
+native void checkip_93x(const char[] szIP, char[] szCity, int citySize, char[] szNetwork, int networkSize, int iUnknown);
+
 #include "vcfcore/global.cpp"
 #include "vcfcore/version.cpp"
 
@@ -66,6 +69,10 @@ public void OnLibraryAdded(const char[] sLibrary)
     {
         gServerData.core_Store = (GetFeatureStatus(FeatureType_Native, "Store_GetClientCredits") == FeatureStatus_Available);
     }
+    else if (StrContains(sLibrary, "checkip", false) != -1)
+    {
+        gServerData.core_93xGeoIP = (GetFeatureStatus(FeatureType_Native, "checkip_93x") == FeatureStatus_Available);
+    }
 }
 
 public void OnLibraryRemoved(const char[] sLibrary)
@@ -78,6 +85,10 @@ public void OnLibraryRemoved(const char[] sLibrary)
     else if (StrContains(sLibrary, "store", false) != -1)
     {
         gServerData.core_Store = (GetFeatureStatus(FeatureType_Native, "Store_GetClientCredits") == FeatureStatus_Available);
+    }
+    else if (StrContains(sLibrary, "checkip", false) != -1)
+    {
+        gServerData.core_93xGeoIP = (GetFeatureStatus(FeatureType_Native, "checkip_93x") == FeatureStatus_Available);
     }
 }
 

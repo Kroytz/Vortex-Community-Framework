@@ -140,6 +140,7 @@ enum struct ClientData
 
         this.Access        = 0;
         this.Nick          = "";
+        this.Flags         = 0;
 
         this.PID           = -1;
         this.TotalPurchase = 0.0;
