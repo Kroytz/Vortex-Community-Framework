@@ -45,6 +45,8 @@ enum struct CvarsList
     ConVar JUMPBOOST_HEIGHT_MULTIPLY;
     ConVar JUMPBOOST_MAX;
 
+    ConVar ADMIN_BANS_OFFICIALURL;
+
     void SyncTickrate()
     {
         ConVar DEFAULT_MINUPDATERATE;

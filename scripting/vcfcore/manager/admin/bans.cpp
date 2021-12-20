@@ -1,5 +1,3 @@
-#define BANS_WEBSITE "RolandHvH.com"
-
 enum struct ban_info_t
 {
     int   m_Target;
@@ -8,7 +6,8 @@ enum struct ban_info_t
     char  m_Identifier;
     char  m_Reason[256];
 }
-static   ban_info_t g_AdminSelect[MAXPLAYERS+1];
+static ban_info_t g_AdminSelect[MAXPLAYERS+1];
+static char szBansWebsite[64];
 
 char szBanType[][] = 
 {
@@ -27,6 +26,14 @@ enum /*BanType*/
 void BansOnPluginStart()
 {
     RegConsoleCmd("sm_ban", BansOnCommandCatched, "sm_ban <#userid|name> <minutes|0> [reason]");
+
+    gCvarList.ADMIN_BANS_OFFICIALURL = CreateConVar("vcf_bans_official_url", "cf.qq.com", "The official url of the server");
+    gCvarList.ADMIN_BANS_OFFICIALURL.AddChangeHook(BansOnOfficialUrlChanged);
+}
+
+void BansOnOfficialUrlChanged(ConVar convar, const char[] oldValue, const char[] newValue)
+{
+    Format(szBansWebsite, sizeof(szBansWebsite), "%s", newValue);
 }
 
 void BansOnSayHookEnd(int client, const char[] szString)
@@ -270,7 +277,7 @@ void BansDoBan(int admin, int target, const char[] szIdentifier, int banType, in
         displaytime, szTemp, 
         szAdminName, 
         reason, 
-        BANS_WEBSITE
+        szBansWebsite
         );
 
         LPrintToChatAllSingleLine("admin ban", admin, target, szBanType[banType], displaytime, szTemp);
@@ -352,7 +359,7 @@ DBCallbackGeneral(BansLoadBansCB)
         expiretime, szQuantity, 
         szAdmin, 
         szReason, 
-        BANS_WEBSITE
+        szBansWebsite
         );
 
         return;
