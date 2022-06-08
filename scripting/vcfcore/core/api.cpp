@@ -4,6 +4,7 @@
 enum struct ForwardData
 {
     Handle OnClientLoaded;
+    Handle OnAdminLoaded;
 
     Handle OnBagItemShowPre;
     Handle OnBagItemUsePost;
@@ -15,6 +16,7 @@ enum struct ForwardData
     void OnInit()
     {
         this.OnClientLoaded = CreateGlobalForward("VCF_OnClientLoaded", ET_Ignore, Param_Cell);
+        this.OnAdminLoaded = CreateGlobalForward("VCF_OnAdminLoaded", ET_Ignore, Param_Cell);
 
         // forward Action VCF_OnBagItemShowPre(int client, const char[] sItemCode);
         this.OnBagItemShowPre = CreateGlobalForward("VCF_OnBagItemShowPre", ET_Hook, Param_Cell, Param_String);
@@ -26,6 +28,13 @@ enum struct ForwardData
     void _OnClientLoaded(int client)
     {
         Call_StartForward(this.OnClientLoaded);
+        Call_PushCell(client);
+        Call_Finish();
+    }
+
+    void _OnAdminLoaded(int client)
+    {
+        Call_StartForward(this.OnAdminLoaded);
         Call_PushCell(client);
         Call_Finish();
     }

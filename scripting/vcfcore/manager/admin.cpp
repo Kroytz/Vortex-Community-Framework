@@ -85,7 +85,7 @@ void AdminFetchUser(int client)
         return;
 
     static char szQuery[512];
-    FormatEx(szQuery, sizeof(szQuery), "SELECT * FROM `vcf_admins` WHERE `pid` = '%d' AND (modid = '%d' OR modid = '0');", gClientData[client].PID, gServerData.ModID);
+    FormatEx(szQuery, sizeof(szQuery), "SELECT nick, access, flag FROM `vcf_admins` WHERE `pid` = '%d' AND (modid = '%d' OR modid = '0');", gClientData[client].PID, gServerData.ModID);
     gServerData.DBI.Query(AdminFetchUserCB, szQuery, client);
 }
 
@@ -103,12 +103,12 @@ DBCallbackGeneral(AdminFetchUserCB)
     
     if (dbRs.FetchRow())
     {
-        // 0: pid
-        // 1: modid
-        dbRs.FetchString(2, gClientData[client].Nick, sizeof(gClientData[].Nick));
-        gClientData[client].Access = dbRs.FetchInt(3);
-        char szFlags[32]; dbRs.FetchString(4, szFlags, sizeof(szFlags));
+        dbRs.FetchString(0, gClientData[client].Nick, sizeof(gClientData[].Nick));
+        gClientData[client].Access = dbRs.FetchInt(1);
+        char szFlags[32]; dbRs.FetchString(2, szFlags, sizeof(szFlags));
         gClientData[client].Flags = AdminConvertStringToBits(szFlags);
+
+        gForwardData._OnAdminLoaded(client);
     }
 
     return;

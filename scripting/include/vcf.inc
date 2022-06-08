@@ -28,6 +28,8 @@ native bool    VCF_IsPlayerFromCN(int client);
 native int     VCF_GetAdminImmunity(int client);
 native int     VCF_GetAdminFlagBits(int client);
 
+forward void   VCF_OnAdminLoaded(int admin);
+
 // Glow
 native int     VCF_CreateGlow(int client, int colors[3] = {0, 0, 0}, float removedelay = 0.0);
 native void    VCF_RemoveGlow(int client);
