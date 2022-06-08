@@ -1,3 +1,5 @@
+#define BANS_BAN_FOREVER_FLAG ADMFLAG_ROOT
+
 enum struct ban_info_t
 {
     int   m_Target;
@@ -130,7 +132,7 @@ void BansDisplayGuideMenuStepTwo(int admin)
     
     menu.SetTitle("%t\n ", "ban menu");
 
-    menu.AddItem("", "永久 Permanant", AdminHasClientFlag(admin, ADMFLAG_ROOT) ? ITEMDRAW_DEFAULT : ITEMDRAW_DISABLED);
+    menu.AddItem("", "永久 Permanant", AdminHasClientFlag(admin, BANS_BAN_FOREVER_FLAG) ? ITEMDRAW_DEFAULT : ITEMDRAW_DISABLED);
     menu.AddItem("", "10分钟 10 Mins");
     menu.AddItem("", "30分钟 30 Mins");
     menu.AddItem("", "60分钟 60 Mins");
@@ -217,7 +219,7 @@ void BansGuideMenuFinale(int admin)
 
     menu.AddItem("null", "单服封禁", ITEMDRAW_DISABLED);
     menu.AddItem("null", "模式封禁");
-    menu.AddItem("null", "社区封禁", AdminHasClientFlag(admin, ADMFLAG_ROOT) ? ITEMDRAW_DEFAULT : ITEMDRAW_DISABLED);
+    menu.AddItem("null", "社区封禁", AdminHasClientFlag(admin, BANS_BAN_FOREVER_FLAG) ? ITEMDRAW_DEFAULT : ITEMDRAW_DISABLED);
 
     menu.ExitButton = false;
     menu.Display(admin, 0);
@@ -249,7 +251,7 @@ void BansDoBan(int admin, int target, const char[] szIdentifier, int banType, in
         FormatEx(szAdmin64, sizeof(szAdmin64), "%s", gClientData[admin].Steam64);
     }
 
-    if (admin != 0 && !AdminHasClientFlag(admin, ADMFLAG_ROOT))
+    if (admin != 0 && !AdminHasClientFlag(admin, BANS_BAN_FOREVER_FLAG))
     {
         PrintToChat(admin, "不是服主你想 BAN 0?");
         return;
