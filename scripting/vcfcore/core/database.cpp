@@ -124,7 +124,7 @@ void DatabaseInsertAdminLog(int admin, const char[] sOperate, int target = -1, c
     else
     {
         FormatEx(szTarget64, sizeof(szTarget64), "%s", gClientData[target].Steam64);
-        FormatEx(szTargetName, sizeof(szTargetName), "%N", target);
+        FormatEx(szTargetName, sizeof(szTargetName), "%s", DatabaseGetPlayerName(target));
     }
 
     static char szQuery[512];

@@ -89,7 +89,6 @@ void APIOnNativeInit(/*void*/)
 {
     // Create main natives
     CreateNative("VCF_GetServerPublicIP", API_GetServerPublicIP);
-    CreateNative("VCF_GetClientAccess",   API_GetClientAccess);
     CreateNative("VCF_GetClientPID",      API_GetClientPID);
     CreateNative("VCF_GetClientVIPLevel", API_GetClientVIPLevel);
 }
@@ -99,15 +98,6 @@ public int API_GetServerPublicIP(Handle hPlugin, int iNumParams)
     int maxlen = GetNativeCell(2);
 
     return SetNativeString(1, gServerData.PublicIP, maxlen);
-}
-
-public int API_GetClientAccess(Handle hPlugin, int iNumParams)
-{
-    // Gets real player index from native cell 
-    int client = GetNativeCell(1);
-    
-    // Return the value
-    return gClientData[client].Access;
 }
 
 public int API_GetClientPID(Handle hPlugin, int iNumParams)

@@ -30,7 +30,10 @@ void AdminOnPluginStart()
 
 void AdminOnNativeInit()
 {
-    CreateNative("VCF_AdminHasFlag", API_AdminHasFlag);
+    CreateNative("VCF_AdminHasFlag",        API_AdminHasFlag);
+    CreateNative("VCF_GetClientAccess",     API_GetClientAccess);
+    CreateNative("VCF_GetAdminImmunity",    API_GetClientAccess);
+    CreateNative("VCF_GetAdminFlagBits",    API_GetAdminFlagBits);
 }
 
 public Action AdminReloadAdminsOnCommandCatched(int client, int args)
@@ -100,9 +103,11 @@ DBCallbackGeneral(AdminFetchUserCB)
     
     if (dbRs.FetchRow())
     {
+        // 0: pid
+        // 1: modid
         dbRs.FetchString(2, gClientData[client].Nick, sizeof(gClientData[].Nick));
         gClientData[client].Access = dbRs.FetchInt(3);
-        char szFlags[32]; dbRs.FetchString(2, szFlags, sizeof(szFlags));
+        char szFlags[32]; dbRs.FetchString(4, szFlags, sizeof(szFlags));
         gClientData[client].Flags = AdminConvertStringToBits(szFlags);
     }
 
@@ -224,6 +229,24 @@ public int API_AdminHasFlag(Handle hPlugin, int iNumParams)
     
     // Return the value
     return AdminHasClientFlag(client, flag);
+}
+
+public int API_GetClientAccess(Handle hPlugin, int iNumParams)
+{
+    // Gets real player index from native cell 
+    int client = GetNativeCell(1);
+    
+    // Return the value
+    return gClientData[client].Access;
+}
+
+public int API_GetAdminFlagBits(Handle hPlugin, int iNumParams)
+{
+    // Gets real player index from native cell 
+    int client = GetNativeCell(1);
+    
+    // Return the value
+    return gClientData[client].Flags;
 }
 
 stock int ConvertSteam64ToSteam32(const char[] steamId64, char[] steamId32, int maxLen)

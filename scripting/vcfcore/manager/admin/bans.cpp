@@ -77,7 +77,10 @@ public Action BansOnCommandCatched(int client, int args)
         else
             FormatEx(g_AdminSelect[client].m_Reason, sizeof(g_AdminSelect[].m_Reason), "No Reason Given. 未给予理由.");
 
-        BansGuideMenuFinale(client);
+        if (client != 0)
+            BansGuideMenuFinale(client);
+        else
+            BansDoBan(client, g_AdminSelect[client].m_Target, gClientData[g_AdminSelect[client].m_Target].Steam64, BANTYPE_MOD, g_AdminSelect[client].m_Length, g_AdminSelect[client].m_Reason);
     }
     else // 参数不够, 需要打开引导菜单
     {
