@@ -4,6 +4,8 @@
 #define _vcf_included
 
 // Core
+native void    VCF_GetServerPublicIP(char[] ip, int maxlen);
+
 forward void   VCF_OnClientLoaded(int client);
 
 // User
@@ -20,7 +22,6 @@ native void    VCF_SetClientHonorPointRule(int client, int value);
 native int     VCF_GetClientHonorPointOther(int client);
 native void    VCF_SetClientHonorPointOther(int client, int value);
 native int     VCF_GetWarningPointClearTimes(int client);
-native void    VCF_GetServerPublicIP(char[] ip, int maxlen);
 native bool    VCF_IsPlayerFromCN(int client);
 
 // Admin
