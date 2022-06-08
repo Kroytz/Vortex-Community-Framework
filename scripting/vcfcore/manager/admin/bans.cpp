@@ -61,7 +61,7 @@ public Action BansOnCommandCatched(int client, int args)
         // 获取目标字符串
         static char szArgString[64];
         GetCmdArg(1, g_AdminSelect[client].m_Identifier, sizeof(g_AdminSelect[].m_Identifier));
-        int target = FindTarget(client, g_AdminSelect[client].m_Identifier, true, false);
+        int target = AdminFindTarget(g_AdminSelect[client].m_Identifier);
 
         if (target != -1)
             g_AdminSelect[client].m_Target = target;
@@ -247,6 +247,12 @@ void BansDoBan(int admin, int target, const char[] szIdentifier, int banType, in
     {
         FormatEx(szAdminName, sizeof(szAdminName), "%s", gClientData[admin].Nick);
         FormatEx(szAdmin64, sizeof(szAdmin64), "%s", gClientData[admin].Steam64);
+    }
+
+    if (admin != 0 && !AdminHasClientFlag(admin, ADMFLAG_ROOT))
+    {
+        PrintToChat(admin, "不是服主你想 BAN 0?");
+        return;
     }
 
     time *= 60;
