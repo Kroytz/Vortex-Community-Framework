@@ -143,10 +143,10 @@ void SignSignSuccess(int client, int continoussign)
     LPrintToChatSingleLine(client, "sign reward", totalReward, continoussign);
     Store_SetClientCredits(client, Store_GetClientCredits(client) + totalReward);
 
-    PrintToChat(client, "[基础积分] %d | [VIP 积分] %d", basicReward, vipReward);
-    PrintToChat(client, "[基础随机] %d | [VIP 随机] %d", basicExtra, vipExtra);
-    PrintToChat(client, "[连签额外] %d | [获取倍率] %.2f", continousReward, flSignRatio);
-    PrintToChat(client, "--- [最终获得] %d", totalReward);
+    // PrintToChat(client, "[基础积分] %d | [VIP 积分] %d", basicReward, vipReward);
+    // PrintToChat(client, "[基础随机] %d | [VIP 随机] %d", basicExtra, vipExtra);
+    // PrintToChat(client, "[连签额外] %d | [获取倍率] %.2f", continousReward, flSignRatio);
+    // PrintToChat(client, "--- [最终获得] %d", totalReward);
 
     if (gServerData.mod_ZombiePlague)
     {

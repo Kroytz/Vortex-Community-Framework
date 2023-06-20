@@ -128,6 +128,18 @@ enum struct ClientData
     float     SignBasicRatio;
     float     SignBonusRatio;
 
+    /* Couple Sys */
+    int iPartnerIndex;
+    int iPartnerPlayerId;
+    int iWeddingDate;
+    int iCPExp;
+    int iCPLvl;
+    int iCPEarnExp;
+    int iTogether;
+    int iTogetherPlay;
+    int iLuv;
+    char szPartnerName[32];
+
     StringMap ClientSteamID;
 
     /**
@@ -166,6 +178,17 @@ enum struct ClientData
         this.Entered       = true;
         this.Code          = "";
         this.Count         = 0;
+
+        this.iPartnerIndex    = -2;
+        this.iPartnerPlayerId =  0;
+        this.iWeddingDate     =  0;
+        this.iCPExp           =  0;
+        this.iCPLvl           =  0;
+        this.iCPEarnExp       =  0;
+        this.iTogether        =  0;
+        this.iTogetherPlay    =  0;
+        this.iLuv             =  0;
+        this.szPartnerName    = "";
 
         delete this.ClientSteamID;
     }

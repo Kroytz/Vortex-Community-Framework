@@ -5,14 +5,18 @@
 #include "vcfcore/manager/users/vip.cpp"
 // #include "vcfcore/manager/users/pwsupport.cpp"
 // #include "vcfcore/manager/users/warningsys.cpp"
+#include "vcfcore/manager/users/couplesys.cpp"
 
 void UsersOnPluginStart()
 {
     RegConsoleCmd("sm_vuser", UsersOnCommandCatched, "Show user center");
+    RegConsoleCmd("sm_me", UsersOnCommandCatched, "Show user center");
+    RegConsoleCmd("sm_i", UsersOnCommandCatched, "Show user center");
 
     FunCommandsOnPluginStart();
     InventoryOnPluginStart();
     SignOnPluginStart();
+    CoupleSysOnPluginStart();
 
     // Iterate slowly...
     // WarningSysOnInit();
@@ -119,6 +123,7 @@ void UsersOnClientReady(int client)
     InviteOnClientReady(client);
     InventoryOnClientReady(client);
     VIPOnClientReady(client);
+    CoupleSysOnClientReady(client);
 }
 
 public Action UsersOnCommandCatched(int client, int args)
@@ -347,4 +352,14 @@ public int API_GetWarningPointClearTimes(Handle hPlugin, int iNumParams)
     int client = GetNativeCell(1);
 
     return gClientData[client].WarningPointClearTimes;
+}
+
+int FindClientByPID(int pid)
+{
+    for (int client = 1; client <= MaxClients; ++client)
+        if (IsPlayerExist(client, false) && gClientData[client].PID)
+            if (gClientData[client].PID == pid)
+                return client;
+
+    return -1;
 }

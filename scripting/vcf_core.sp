@@ -32,6 +32,7 @@ native void checkip_93x(const char[] szIP, char[] szCity, int citySize, char[] s
 #include "vcfcore/version.cpp"
 
 #include "vcfcore/core/api.cpp"
+#include "vcfcore/core/stocks.cpp"
 #include "vcfcore/core/database.cpp"
 
 #include "vcfcore/manager/hook.cpp"

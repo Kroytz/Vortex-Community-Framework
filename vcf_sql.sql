@@ -276,4 +276,17 @@ CREATE TABLE `vcf_warninglog`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
+DROP TABLE IF EXISTS `vcf_couples`;
+CREATE TABLE `vcf_couples` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `source_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `target_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `date` int(11) unsigned NOT NULL DEFAULT '0',
+  `exp` int(11) unsigned NOT NULL DEFAULT '0',
+  `together` int(11) unsigned NOT NULL DEFAULT '0',
+  `luv` int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `P` (`source_id`,`target_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4;
+
 SET FOREIGN_KEY_CHECKS = 1;
