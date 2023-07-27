@@ -1,43 +1,50 @@
 void HookOnPluginStart()
 {
-    HookEvent("player_spawn", HookOnPlayerSpawn, EventHookMode_Post);
+    HookEvent("round_start", HookOnRoundStart);
+    HookEvent("round_end", HookOnRoundEnd);
+    HookEvent("player_spawn", HookOnPlayerSpawn);
     HookEvent("player_death", HookOnPlayerDeath);
-    HookEvent("player_jump", HookOnPlayerJump, EventHookMode_Post);
+    HookEvent("player_jump", HookOnPlayerJump);
 }
 
-public Action HookOnPlayerSpawn(Event event, const char[] name, bool dontBroadcast)
+public void HookOnRoundStart(Event event, const char[] name, bool dontBroadcast)
+{
+    gServerData.RoundStart = GetGameTime();
+}
+
+public void HookOnRoundEnd(Event event, const char[] name, bool dontBroadcast)
+{
+    CoupleSysOnRoundEnd();
+}
+
+public void HookOnPlayerSpawn(Event event, const char[] name, bool dontBroadcast)
 {
     int client = GetClientOfUserId(event.GetInt("userid"));
 
     if (!IsPlayerExist(client, false))
-        return Plugin_Continue;
+        return;
 
     VToolsOnPlayerSpawn(client);
-
-    return Plugin_Continue;
 }
 
-public Action HookOnPlayerDeath(Event event, const char[] name, bool dontBroadcast)
+public void HookOnPlayerDeath(Event event, const char[] name, bool dontBroadcast)
 {
     int client = GetClientOfUserId(event.GetInt("userid"));
 
     if (!IsPlayerExist(client, false))
-        return Plugin_Continue;
+        return;
 
     VToolsOnPlayerDeath(client);
-
-    return Plugin_Continue;
 }
 
-public Action HookOnPlayerJump(Event hEvent, char[] sName, bool dontBroadcast) 
+public void HookOnPlayerJump(Event hEvent, char[] sName, bool dontBroadcast) 
 {
     int client = GetClientOfUserId(hEvent.GetInt("userid"));
 
     if (!IsPlayerExist(client))
-        return Plugin_Continue;
+        return;
 
     VToolsOnPlayerJump(client);
-    return Plugin_Continue;
 }
 
 public void ZP_OnClientUpdated(int client, int attacker)

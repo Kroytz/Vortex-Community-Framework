@@ -57,6 +57,7 @@ void UsersOnClientDisconnect(int client)
 {
     #pragma unused client
     // PWSupportOnClientDisconnect(client);
+    CoupleSysOnClientDisconnect(client);
 }
 
 void UsersFetchUser(int client)
@@ -243,6 +244,7 @@ void UsersOnNativeInit(/*void*/)
 {
     InventoryOnNativeInit();
     SignOnNativeInit();
+    CoupleSysOnNativeInit();
 
     CreateNative("VCF_GetClientTotalPurchase",      API_GetClientTotalPurchase);
     CreateNative("VCF_GetClientWarningPoint",       API_GetClientWarningPoint);

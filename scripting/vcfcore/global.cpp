@@ -10,6 +10,7 @@ enum struct ServerData
     int             ServerID;
     int             ModID;
     char            PublicIP[NORMAL_LINE_LENGTH];
+    float           RoundStart;
 
     /* AdminMenu */
     ArrayList AdminMenu;

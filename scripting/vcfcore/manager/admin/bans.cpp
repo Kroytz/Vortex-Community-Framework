@@ -176,7 +176,7 @@ void BansDisplayGuideMenuStepThree(int admin)
     menu.AddItem("恶意捣乱", "恶意捣乱");
     menu.AddItem("宣传广告", "宣传广告");
     menu.AddItem("骚扰他人", "骚扰他人");
-    menu.AddItem("队友伤害", "队友伤害");
+    // menu.AddItem("队友伤害", "队友伤害");
     menu.AddItem("破坏规则", "破坏规则");
     menu.AddItem("自定义理由", "自定义理由"); // Slot 6
 
@@ -195,7 +195,7 @@ public int BansGuideMenuStepThreeHandler(Menu menu, MenuAction action, int admin
         delete menu;
     else if (action == MenuAction_Select)
     {
-        if (slot < 6)
+        if (slot < 5)
         {
             char reason[32];
             menu.GetItem(slot, reason, 32);

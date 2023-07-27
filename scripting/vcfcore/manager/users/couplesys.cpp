@@ -28,7 +28,7 @@ void CoupleSysOnPluginStart()
 
     InitUserMessage();
     SetChatPrefix(" [\x0ECouples\x01] ");
-    
+
 }
 
 void CoupleSysOnClientReady(int client)
@@ -57,6 +57,22 @@ public Action CoupleSysOnCommandCatchedPropose(int client, int args)
     CouplesSysDisplayProposeMenu(client);
 
     return Plugin_Handled;
+}
+
+void CoupleSysOnRoundEnd()
+{
+    float flRoundDuration = GetGameTime() - gServerData.RoundStart;
+    if (flRoundDuration <= 0.0)
+        return;
+    int iRoundDuration = RoundToCeil(flRoundDuration);
+
+    for (int i = 1; i <= MaxClients; ++i)
+    {
+        if (gClientData[i].iPartnerPlayerId < 1)
+            continue;
+
+        gClientData[i].iTogetherPlay += iRoundDuration;
+    }
 }
 
 void CoupleSysFetchUser(int client)
@@ -120,6 +136,26 @@ DBCallbackGeneral(CoupleSysFetchUserCB)
     }
 }
 
+void CoupleSysOnClientDisconnect(int client)
+{
+    if (gClientData[client].iPartnerPlayerId > -1 && (gClientData[client].iTogetherPlay > 0 || gClientData[client].iCPEarnExp > 0))
+    {
+        char m_szQuery[256];
+        FormatEx(m_szQuery, 256, "UPDATE vcf_couples SET exp=exp+%d, together=together+%d WHERE source_id = %d OR target_id = %d", gClientData[client].iCPEarnExp, gClientData[client].iTogetherPlay, gClientData[client].PID, gClientData[client].PID);
+        gServerData.DBI.Query(DatabaseQueryAndIgnore, m_szQuery);
+    }
+    
+    Couples_Data_Client_ProposeTargetUserId[client] = 0;
+    Couples_Data_Client_ProposeSelectedTime[client] = 0;
+
+    int target = gClientData[client].iPartnerIndex;
+
+    if(target < 1)
+        return;
+
+    gClientData[target].iPartnerIndex = -1;
+}
+
 void CoupleSysDisplayMainMenu(int client)
 {
     Menu menu = new Menu(MenuHandler_CouplesMainMenu);
@@ -180,7 +216,7 @@ void CouplesSysDisplaySelectMenu(int client)
     menu.SetTitle("[Couple] 选择求婚对象\n ");
 
     char m_szId[8];
-    for(int target = 1; target <= MaxClients; ++target)
+    for (int target = 1; target <= MaxClients; ++target)
     {
         // Current in game                  self?
         if(!IsPlayerExist(target, false) || target == client)
@@ -249,7 +285,7 @@ void CouplesSysDisplayProposeMenu(int target)
     int userid = GetClientUserId(target);
     
     char m_szId[8];
-    for(int source = 1; source <= MaxClients; ++source)
+    for (int source = 1; source <= MaxClients; ++source)
     {
         // Current in game                  self?
         if(!IsPlayerExist(source, false) || source == target)
@@ -571,4 +607,33 @@ public int MenuHandler_CouplesAboutCPPanel(Menu menu, MenuAction action, int cli
 {
     if (action == MenuAction_Select)
         CoupleSysDisplayMainMenu(client);
+}
+
+void CoupleSysOnNativeInit(/*void*/)
+{
+    CreateNative("VCF_GetClientCouplePID", API_GetClientCouplePID);
+    CreateNative("VCF_GetClientCoupleInGameIndex", API_GetClientCoupleInGameIndex);
+
+    CreateNative("VCF_ModifyClientCoupleExpEarn", API_ModifyClientCoupleExpEarn);
+}
+
+public int API_GetClientCouplePID(Handle hPlugin, int iNumParams)
+{
+    int client = GetNativeCell(1);
+    return gClientData[client].iPartnerPlayerId;
+}
+
+public int API_GetClientCoupleInGameIndex(Handle hPlugin, int iNumParams)
+{
+    int client = GetNativeCell(1);
+    return gClientData[client].iPartnerIndex;
+}
+
+public int API_ModifyClientCoupleExpEarn(Handle hPlugin, int iNumParams)
+{
+    int client = GetNativeCell(1);
+    int delta = GetNativeCell(2);
+    gClientData[client].iCPEarnExp += delta;
+
+    return 0;
 }
